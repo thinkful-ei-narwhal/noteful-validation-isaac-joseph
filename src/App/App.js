@@ -7,6 +7,8 @@ import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import AddFolder from '../AddFolder/AddFolderNav';
 import AddFolderMain from '../AddFolder/AddFolderMain';
+import AddNoteMain from '../AddNote/AddNoteMain';
+import AddNoteNav from '../AddNote/AddNoteNav';
 
 import CreateContext from '../ContextStore';
 import './App.css';
@@ -95,7 +97,7 @@ class App extends Component {
 				))}
 				<Route path='/note/:noteId' component={NotePageNav} />
 				<Route path='/add-folder' component={AddFolder} />
-				<Route path='/add-note' component={NotePageNav} />
+				<Route path='/add-note' component={AddNoteNav} />
 			</CreateContext.Provider>
 		);
 	}
@@ -117,6 +119,7 @@ class App extends Component {
 				))}
 				<Route path='/note/:noteId' component={NotePageMain} />
 				<Route path='/add-folder' component={AddFolderMain} />
+				<Route path='/add-note' component={AddNoteMain} />
 			</CreateContext.Provider>
 		);
 	}

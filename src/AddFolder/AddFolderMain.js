@@ -23,7 +23,7 @@ export class AddFolderMain extends Component {
 					id='add-folder'
 					onSubmit={(e) => {
 						e.preventDefault();
-						handleSubmit(this.state);
+						handleSubmit(this.state, 'folders');
 						this.props.history.push('/');
 					}}
 				>

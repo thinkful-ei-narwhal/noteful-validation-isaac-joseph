@@ -50,18 +50,18 @@ class App extends Component {
 	/* ***************************************
 					Handle Submit
 	*****************************************/
-	handleSubmit = (body) => {
+	handleSubmit = (body, endpoint) => {
 		const newItem = JSON.stringify(body);
-		return fetch(`http://localhost:9090/folders`, {
+		return fetch(`http://localhost:9090/${endpoint}`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
 			},
 			body: newItem,
 		}).then(() => {
-			this.fetchAPI('folders').then((res) => {
+			this.fetchAPI(endpoint).then((res) => {
 				this.setState({
-					folders: res,
+					[endpoint]: res,
 				});
 			});
 		});

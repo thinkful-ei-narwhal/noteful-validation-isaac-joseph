@@ -5,6 +5,8 @@ import NoteListNav from '../NoteListNav/NoteListNav';
 import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
+import AddFolder from '../AddFolder/AddFolderNav';
+import AddFolderMain from '../AddFolder/AddFolderMain';
 
 import CreateContext from '../ContextStore';
 import './App.css';
@@ -43,6 +45,26 @@ class App extends Component {
 		});
 	};
 
+	/* ***************************************
+					Handle Submit
+	*****************************************/
+	handleSubmit = (body) => {
+		const newItem = JSON.stringify(body);
+		return fetch(`http://localhost:9090/folders`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: newItem,
+		}).then(() => {
+			this.fetchAPI('folders').then((res) => {
+				this.setState({
+					folders: res,
+				});
+			});
+		});
+	};
+
 	componentDidMount() {
 		// fake date loading from API call
 
@@ -72,7 +94,7 @@ class App extends Component {
 					<Route exact key={path} path={path} component={NoteListNav} />
 				))}
 				<Route path='/note/:noteId' component={NotePageNav} />
-				<Route path='/add-folder' component={NotePageNav} />
+				<Route path='/add-folder' component={AddFolder} />
 				<Route path='/add-note' component={NotePageNav} />
 			</CreateContext.Provider>
 		);
@@ -87,12 +109,14 @@ class App extends Component {
 					notes: notes,
 					folders: folders,
 					deleteNote: this.deleteNote,
+					handleSubmit: this.handleSubmit,
 				}}
 			>
 				{['/', '/folder/:folderId'].map((path) => (
 					<Route exact key={path} path={path} component={NoteListMain} />
 				))}
 				<Route path='/note/:noteId' component={NotePageMain} />
+				<Route path='/add-folder' component={AddFolderMain} />
 			</CreateContext.Provider>
 		);
 	}

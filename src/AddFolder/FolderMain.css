@@ -1,0 +1,38 @@
+.folder-main label {
+	font-size: 1.5rem;
+	color: #fff;
+}
+.folder-main p {
+	font-size: 1.5rem;
+	color: red;
+}
+
+.folder-main form {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.folder-main input {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+	width: 80%;
+}
+
+.folder-main button {
+	font-size: 1.8rem;
+	background-color: #eee;
+	color: black;
+	padding: 0.2rem 1.8rem;
+	margin-top: 3rem;
+	border-radius: 1rem;
+}
+
+.folder-main button:disabled {
+	color: rgb(201, 192, 192);
+}
+
+.folder-main button:hover {
+	background-color: aqua;
+}

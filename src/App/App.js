@@ -9,6 +9,7 @@ import AddFolder from '../AddFolder/AddFolderNav';
 import AddFolderMain from '../AddFolder/AddFolderMain';
 import AddNoteMain from '../AddNote/AddNoteMain';
 import AddNoteNav from '../AddNote/AddNoteNav';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 import CreateContext from '../ContextStore';
 import './App.css';
@@ -118,26 +119,29 @@ class App extends Component {
 					<Route exact key={path} path={path} component={NoteListMain} />
 				))}
 				<Route path='/note/:noteId' component={NotePageMain} />
-				<Route path='/add-folder' component={AddFolderMain} />
-				<Route path='/add-note' component={AddNoteMain} />
+				<ErrorPage>
+					<Route path='/add-folder' component={AddFolderMain} />
+					<Route path='/add-note' component={AddNoteMain} />
+				</ErrorPage>
 			</CreateContext.Provider>
 		);
 	}
 
 	render() {
-		//this.delete();
 		if (this.state.notes.length > 0 && this.state.folders.length > 0) {
 			return (
-				<div className='App'>
-					<nav className='App__nav'>{this.renderNavRoutes()}</nav>
-					<header className='App__header'>
-						<h1>
-							<Link to='/'>Noteful</Link>{' '}
-							<FontAwesomeIcon icon='check-double' />
-						</h1>
-					</header>
-					<main className='App__main'>{this.renderMainRoutes()}</main>
-				</div>
+				<ErrorPage>
+					<div className='App'>
+						<nav className='App__nav'>{this.renderNavRoutes()}</nav>
+						<header className='App__header'>
+							<h1>
+								<Link to='/'>Noteful</Link>{' '}
+								<FontAwesomeIcon icon='check-double' />
+							</h1>
+						</header>
+						<main className='App__main'>{this.renderMainRoutes()}</main>
+					</div>
+				</ErrorPage>
 			);
 		} else {
 			return <div>Loading</div>;

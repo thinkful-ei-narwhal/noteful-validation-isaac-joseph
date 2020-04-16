@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Note.css';
 import CreateContext from '../ContextStore';
+import PropTypes from 'prop-types';
 
 export default class Note extends React.Component {
 	static contextType = CreateContext;
@@ -37,11 +38,14 @@ export default class Note extends React.Component {
 		);
 	}
 }
+Note.propTypes = {
+	id: PropTypes.string,
+	name: PropTypes.string,
+	modified: PropTypes.string,
+};
 
-/* Note.defaultProps = {
-	history: {
-		goBack: () => {
-			'/';
-		},
-	},
-}; */
+Note.defaultProps = {
+	id: '',
+	name: '',
+	modified: new Date(),
+};
